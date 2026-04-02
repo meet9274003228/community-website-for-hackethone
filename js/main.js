@@ -98,3 +98,54 @@ if (cdDays && cdHours && cdMins && cdSecs) {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 }
+
+// Contact Form Handling
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+
+    // Show mock success message
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+    submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 2s linear infinite;"></i> Sending...';
+
+    // Simulate API call
+    setTimeout(() => {
+      submitBtn.innerHTML = '<i class="ph ph-check-circle"></i> Message Sent!';
+      submitBtn.classList.remove('btn-primary');
+      submitBtn.style.background = '#10b981';
+      submitBtn.style.opacity = '1';
+      
+      contactForm.reset();
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.classList.add('btn-primary');
+        submitBtn.style.background = '';
+      }, 3000);
+    }, 1500);
+  });
+}
+
+// Spin animation for loading state
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+document.head.appendChild(style);

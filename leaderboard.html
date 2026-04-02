@@ -2,12 +2,229 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HackForge | Leaderboard</title>
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/main.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* Podium Section */
+    .podium-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+    .podium-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 220px;
+    }
+    .podium-card:hover {
+      transform: translateY(-8px);
+    }
+    /* 1st Place */
+    .podium-gold {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.15);
+      order: 2;
+      padding-bottom: 3rem;
+    }
+    .podium-gold:hover { box-shadow: 0 0 50px rgba(251, 191, 36, 0.3); }
+    /* 2nd Place */
+    .podium-silver {
+      background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.05));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 0 20px rgba(148, 163, 184, 0.1);
+      order: 1;
+    }
+    .podium-silver:hover { box-shadow: 0 0 40px rgba(148, 163, 184, 0.2); }
+    /* 3rd Place */
+    .podium-bronze {
+      background: linear-gradient(135deg, rgba(180, 83, 9, 0.15), rgba(146, 64, 14, 0.05));
+      border: 1px solid rgba(180, 83, 9, 0.3);
+      box-shadow: 0 0 20px rgba(180, 83, 9, 0.1);
+      order: 3;
+    }
+    .podium-bronze:hover { box-shadow: 0 0 40px rgba(180, 83, 9, 0.2); }
+
+    .podium-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+      position: relative;
+    }
+    .podium-gold .podium-avatar {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+      width: 85px;
+      height: 85px;
+      font-size: 1.8rem;
+    }
+    .podium-silver .podium-avatar {
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+      box-shadow: 0 0 15px rgba(148, 163, 184, 0.4);
+    }
+    .podium-bronze .podium-avatar {
+      background: linear-gradient(135deg, #b45309, #92400e);
+      box-shadow: 0 0 15px rgba(180, 83, 9, 0.4);
+    }
+
+    .podium-crown {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+    }
+    .podium-name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+    }
+    .podium-role {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .podium-points {
+      font-family: monospace;
+      font-weight: 800;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .podium-gold .podium-points { color: #fbbf24; }
+    .podium-silver .podium-points { color: #94a3b8; }
+    .podium-bronze .podium-points { color: #b45309; }
+
+    .podium-badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 1.3rem;
+    }
+
+    /* Leaderboard Table */
+    .lb-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .lb-table thead tr {
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .lb-table th {
+      padding: 1.2rem 1.5rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .lb-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.3s ease;
+    }
+    .lb-table tbody tr:hover {
+      background: rgba(139, 92, 246, 0.05);
+    }
+    .lb-table td {
+      padding: 1.2rem 1.5rem;
+    }
+    .lb-rank {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .lb-hacker {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .lb-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .lb-points {
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    .lb-bar-wrapper {
+      width: 120px;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .lb-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .lb-badges {
+      display: flex;
+      gap: 0.4rem;
+      font-size: 1.3rem;
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: monospace;
+    }
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+      .podium-container { gap: 1rem; }
+      .podium-card { width: 160px; padding: 1.2rem 1rem; }
+      .podium-gold .podium-avatar { width: 65px; height: 65px; }
+      .podium-avatar { width: 55px; height: 55px; font-size: 1.2rem; }
+      .podium-points { font-size: 1.2rem; }
+      .lb-bar-wrapper { display: none; }
+      .lb-table th, .lb-table td { padding: 0.8rem; font-size: 0.85rem; }
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar scrolled">
@@ -24,67 +241,240 @@
     </div>
   </nav>
 
-  <header class="section" style="padding-top: 150px; padding-bottom: 2rem; text-align: center;">
+  <header class="section" style="padding-top: 150px; padding-bottom: 1rem; text-align: center;">
     <div class="container reveal">
       <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Global <span class="gradient-text">Leaderboard</span></h1>
       <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Ship projects, earn badges, and climb the ranks of top developers in the community.</p>
     </div>
   </header>
 
-  <section class="section" style="padding-top: 2rem;">
+  <!-- Stats -->
+  <section style="padding-top: 2rem;">
     <div class="container">
+      <div class="stats-row reveal">
+        <div class="stat-item">
+          <div class="stat-number gradient-text">15,420</div>
+          <div class="stat-label">Total Hackers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: #fbbf24;">1,240</div>
+          <div class="stat-label">Projects Shipped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--accent);">3,580</div>
+          <div class="stat-label">Badges Earned</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--secondary);">120+</div>
+          <div class="stat-label">Hackathons Completed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top 3 Podium -->
+  <section style="padding-top: 1rem;">
+    <div class="container">
+      <div class="podium-container reveal">
+        <!-- 2nd Place (Silver) -->
+        <div class="podium-card podium-silver">
+          <div class="podium-avatar">
+            <span>MC</span>
+          </div>
+          <div class="podium-name">Mark Chen</div>
+          <div class="podium-role">Blockchain Engineer</div>
+          <div class="podium-points">21,200</div>
+          <div class="podium-badges">
+            <i class="ph-fill ph-medal" style="color: #94a3b8;"></i>
+            <i class="ph-fill ph-lightning" style="color: var(--accent);"></i>
+          </div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">🥈 2nd Place</div>
+        </div>
+
+        <!-- 1st Place (Gold) -->
+        <div class="podium-card podium-gold">
+          <div class="podium-avatar">
+            <span class="podium-crown">👑</span>
+            <span>JD</span>
+          </div>
+          <div class="podium-name">Jane Doe</div>
+          <div class="podium-role">Full Stack Developer</div>
+          <div class="podium-points">24,500</div>
+          <div class="podium-badges">
+            <i class="ph-fill ph-trophy" style="color: #fbbf24;"></i>
+            <i class="ph-fill ph-medal" style="color: var(--primary);"></i>
+            <i class="ph-fill ph-fire" style="color: var(--secondary);"></i>
+          </div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #fbbf24; font-weight: 600;">🥇 Champion</div>
+        </div>
+
+        <!-- 3rd Place (Bronze) -->
+        <div class="podium-card podium-bronze">
+          <div class="podium-avatar">
+            <span>AS</span>
+          </div>
+          <div class="podium-name">Alex Smith</div>
+          <div class="podium-role">AI Researcher</div>
+          <div class="podium-points">19,800</div>
+          <div class="podium-badges">
+            <i class="ph-fill ph-star" style="color: #fbbf24;"></i>
+          </div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">🥉 3rd Place</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Leaderboard Table -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+      <h2 class="reveal" style="font-size: 1.8rem; margin-bottom: 2rem;">Full <span class="gradient-text">Rankings</span></h2>
       <div class="glass-panel reveal" style="overflow: hidden; padding: 0;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <table class="lb-table">
           <thead>
-            <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid var(--glass-border);">
-              <th style="padding: 1.5rem; color: var(--text-muted); font-weight: 500;">Rank</th>
-              <th style="padding: 1.5rem; color: var(--text-muted); font-weight: 500;">Hacker</th>
-              <th style="padding: 1.5rem; color: var(--text-muted); font-weight: 500;">Points</th>
-              <th style="padding: 1.5rem; color: var(--text-muted); font-weight: 500;">Badges</th>
+            <tr>
+              <th style="text-align: left;">Rank</th>
+              <th style="text-align: left;">Hacker</th>
+              <th style="text-align: left;">Points</th>
+              <th style="text-align: left;">Progress</th>
+              <th style="text-align: left;">Badges</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--glass-border); transition: background 0.3s ease;">
-              <td style="padding: 1.5rem;"><span style="font-size: 1.5rem; font-weight: bold; color: #fbbf24;">#1</span></td>
-              <td style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--secondary), var(--primary)); display: flex; align-items: center; justify-content: center; font-weight: bold;">JD</div>
-                <div>
-                  <div style="font-weight: 600; font-size: 1.1rem;">Jane Doe</div>
-                  <div style="color: var(--text-muted); font-size: 0.9rem;">Full Stack Developer</div>
+            <tr>
+              <td><span class="lb-rank" style="color: #fbbf24;">🥇 #1</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">JD</div>
+                  <div>
+                    <div style="font-weight: 600;">Jane Doe</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Full Stack Developer</div>
+                  </div>
                 </div>
               </td>
-              <td style="padding: 1.5rem; font-weight: 600; font-size: 1.2rem; color: var(--accent);">24,500</td>
-              <td style="padding: 1.5rem; display: flex; gap: 0.5rem;">
-                <i class="ph-fill ph-trophy" style="color: #fbbf24; font-size: 1.5rem;"></i>
-                <i class="ph-fill ph-medal" style="color: var(--primary); font-size: 1.5rem;"></i>
+              <td><span class="lb-points">24,500</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 100%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-trophy" style="color: #fbbf24;"></i>
+                  <i class="ph-fill ph-medal" style="color: var(--primary);"></i>
+                  <i class="ph-fill ph-fire" style="color: var(--secondary);"></i>
+                </div>
               </td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--glass-border); transition: background 0.3s ease;">
-              <td style="padding: 1.5rem;"><span style="font-size: 1.5rem; font-weight: bold; color: #94a3b8;">#2</span></td>
-              <td style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-weight: bold;">MC</div>
-                <div>
-                  <div style="font-weight: 600; font-size: 1.1rem;">Mark Chen</div>
-                  <div style="color: var(--text-muted); font-size: 0.9rem;">Blockchain Engineer</div>
+            <tr>
+              <td><span class="lb-rank" style="color: #94a3b8;">🥈 #2</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, var(--primary), var(--accent));">MC</div>
+                  <div>
+                    <div style="font-weight: 600;">Mark Chen</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Blockchain Engineer</div>
+                  </div>
                 </div>
               </td>
-              <td style="padding: 1.5rem; font-weight: 600; font-size: 1.2rem; color: var(--accent);">21,200</td>
-              <td style="padding: 1.5rem; display: flex; gap: 0.5rem;">
-                <i class="ph-fill ph-medal" style="color: var(--primary); font-size: 1.5rem;"></i>
+              <td><span class="lb-points">21,200</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 86%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-medal" style="color: #94a3b8;"></i>
+                  <i class="ph-fill ph-lightning" style="color: var(--accent);"></i>
+                </div>
               </td>
             </tr>
-            <tr style="transition: background 0.3s ease;">
-              <td style="padding: 1.5rem;"><span style="font-size: 1.5rem; font-weight: bold; color: #b45309;">#3</span></td>
-              <td style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #10b981); display: flex; align-items: center; justify-content: center; font-weight: bold;">AS</div>
-                <div>
-                  <div style="font-weight: 600; font-size: 1.1rem;">Alex Smith</div>
-                  <div style="color: var(--text-muted); font-size: 0.9rem;">AI Researcher</div>
+            <tr>
+              <td><span class="lb-rank" style="color: #b45309;">🥉 #3</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, var(--accent), #10b981);">AS</div>
+                  <div>
+                    <div style="font-weight: 600;">Alex Smith</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">AI Researcher</div>
+                  </div>
                 </div>
               </td>
-              <td style="padding: 1.5rem; font-weight: 600; font-size: 1.2rem; color: var(--accent);">19,800</td>
-              <td style="padding: 1.5rem; display: flex; gap: 0.5rem;">
-                <i class="ph-fill ph-star" style="color: #fbbf24; font-size: 1.5rem;"></i>
+              <td><span class="lb-points">19,800</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 80%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-star" style="color: #fbbf24;"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank">#4</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, var(--secondary), var(--primary));">PK</div>
+                  <div>
+                    <div style="font-weight: 600;">Priya Kumar</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">DevOps Engineer</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-points">17,600</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 72%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-rocket" style="color: var(--primary);"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank">#5</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, #10b981, var(--accent));">LW</div>
+                  <div>
+                    <div style="font-weight: 600;">Liam Wang</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Mobile Developer</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-points">15,300</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 62%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-device-mobile" style="color: #10b981;"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank">#6</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">SR</div>
+                  <div>
+                    <div style="font-weight: 600;">Sofia Rodriguez</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">UI/UX Designer</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-points">14,100</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 57%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-paint-brush" style="color: var(--secondary);"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank">#7</span></td>
+              <td>
+                <div class="lb-hacker">
+                  <div class="lb-avatar" style="background: linear-gradient(135deg, #fbbf24, var(--secondary));">RJ</div>
+                  <div>
+                    <div style="font-weight: 600;">Raj Joshi</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Cloud Architect</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-points">12,800</span></td>
+              <td><div class="lb-bar-wrapper"><div class="lb-bar" style="width: 52%;"></div></div></td>
+              <td>
+                <div class="lb-badges">
+                  <i class="ph-fill ph-cloud" style="color: var(--accent);"></i>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -92,6 +482,7 @@
       </div>
     </div>
   </section>
+
   <script src="js/main.js"></script>
 </body>
 </html>

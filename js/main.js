@@ -99,46 +99,7 @@ if (cdDays && cdHours && cdMins && cdSecs) {
   setInterval(updateCountdown, 1000);
 }
 
-// Contact Form Handling
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value
-    };
-
-    // Show mock success message
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerHTML;
-    
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
-    submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 2s linear infinite;"></i> Sending...';
-
-    // Simulate API call
-    setTimeout(() => {
-      submitBtn.innerHTML = '<i class="ph ph-check-circle"></i> Message Sent!';
-      submitBtn.classList.remove('btn-primary');
-      submitBtn.style.background = '#10b981';
-      submitBtn.style.opacity = '1';
-      
-      contactForm.reset();
-
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.classList.add('btn-primary');
-        submitBtn.style.background = '';
-      }, 3000);
-    }, 1500);
-  });
-}
+// Contact Form Handling (Moved to end for consistency)
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
@@ -310,6 +271,37 @@ if (regModal && openRegBtns.length > 0) {
 
   // Done button in success view
   document.getElementById('success-done-btn')?.addEventListener('click', closeModal);
+}
+
+// Contact Form Logic
+const contactForm = document.getElementById('contact-form');
+const contactSuccess = document.getElementById('contact-success');
+
+if (contactForm && contactSuccess) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1.5s linear infinite;"></i> Sending...';
+    
+    // Mock API Call
+    setTimeout(() => {
+      contactForm.style.display = 'none';
+      contactSuccess.style.display = 'block';
+      
+      // Trigger subtle confetti
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#8b5cf6', '#ec4891', '#0ea5e9']
+        });
+      }
+    }, 1500);
+  });
 }
 
 // Simple Confetti Function

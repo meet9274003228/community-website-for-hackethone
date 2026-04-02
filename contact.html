@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | HackForge Community</title>
+  <meta name="description" content="Get in touch with the HackForge team for support, partnerships, or inquiries.">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/main.css">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Theme Init -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="tsparticles" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <i class="ph-fill ph-code" style="color: var(--primary); margin-right: 5px; vertical-align: middle;"></i>Hack<span class="gradient-text">Forge</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="events.html" class="nav-link">Hackathons</a></li>
+        <li><a href="projects.html" class="nav-link">Gallery</a></li>
+        <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="contact.html" class="nav-link active" style="color: var(--text-main);">Contact</a></li>
+      </ul>
+      
+      <div class="search-container">
+        <i class="ph ph-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search hackathons, teams...">
+      </div>
+
+      <div class="nav-cta" style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <div class="notifications-wrapper">
+          <button class="notif-btn" id="notif-btn">
+            <i class="ph ph-bell"></i>
+            <span class="notif-badge">3</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Hero -->
+  <section class="section" style="padding-top: 150px; min-height: 100vh;">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
+        <h1 class="reveal" style="font-size: 3.5rem; margin-bottom: 1.5rem;">Get in <span class="gradient-text">Touch</span></h1>
+        <p class="reveal" style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">Have questions about an upcoming hackathon? Want to partner with us? Drop us a message and our team will get back to you within 24 hours.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start;">
+        <!-- Contact Form -->
+        <div class="glass-panel reveal" style="padding: 3rem;">
+          <form id="contact-form" class="contact-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label for="contact-name">Full Name</label>
+                <input type="text" id="contact-name" class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" class="form-control" placeholder="your@email.com" required>
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="contact-subject">Subject</label>
+              <select id="contact-subject" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem;" required>
+                <option value="" disabled selected>Select Inquiry Type</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="partnership">Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" class="form-control" style="min-height: 150px; resize: vertical; padding-top: 1rem;" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; height: 55px; font-weight: 600; font-size: 1rem;">Send Message <i class="ph ph-paper-plane-tilt"></i></button>
+          </form>
+
+          <!-- Success Message (Hidden) -->
+          <div id="contact-success" style="display: none; text-align: center; padding: 2rem 0; animation: scaleUp 0.5s ease-out;">
+            <div style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid #10b981;">
+              <i class="ph ph-check" style="font-size: 2.5rem; color: #10b981;"></i>
+            </div>
+            <h2 style="margin-bottom: 1rem;">Message Sent!</h2>
+            <p style="color: var(--text-muted);">Thanks for reaching out. We've received your message and will respond shortly.</p>
+            <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 2rem;">Send Another Message</button>
+          </div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div style="display: grid; gap: 1.5rem;">
+          <div class="glass-panel reveal" style="padding: 2rem; display: flex; gap: 1.5rem; align-items: center;">
+            <div style="width: 50px; height: 50px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(139, 92, 246, 0.2);">
+              <i class="ph ph-envelope" style="font-size: 1.5rem; color: var(--primary);"></i>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 0.2rem;">Email Us</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">hello@hackforge.com</p>
+            </div>
+          </div>
+
+          <div class="glass-panel reveal" style="padding: 2rem; display: flex; gap: 1.5rem; align-items: center; transition-delay: 0.1s;">
+            <div style="width: 50px; height: 50px; background: rgba(236, 72, 145, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(236, 72, 145, 0.2);">
+              <i class="ph ph-discord-logo" style="font-size: 1.5rem; color: #ec4891;"></i>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 0.2rem;">Community</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">discord.gg/hackforge</p>
+            </div>
+          </div>
+
+          <div class="glass-panel reveal" style="padding: 2rem; display: flex; gap: 1.5rem; align-items: center; transition-delay: 0.2s;">
+            <div style="width: 50px; height: 50px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(14, 165, 233, 0.2);">
+              <i class="ph ph-map-pin" style="font-size: 1.5rem; color: #0ea5e9;"></i>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 0.2rem;">Location</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Global / Remote</p>
+            </div>
+          </div>
+
+          <div class="glass-panel reveal" style="padding: 2rem; transition-delay: 0.3s;">
+            <h4 style="margin-bottom: 1rem;">Follow Our Journey</h4>
+            <div style="display: flex; gap: 1rem;">
+              <a href="#" class="social-icon"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-icon"><i class="ph ph-github-logo"></i></a>
+              <a href="#" class="social-icon"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-icon"><i class="ph ph-instagram-logo"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-brand" style="margin-bottom: 1.5rem;">
+            <i class="ph-fill ph-code" style="color: var(--primary);"></i>Hack<span class="gradient-text">Forge</span>
+          </div>
+          <p style="color: var(--text-muted); line-height: 1.6;">Building the most premium community for the next generation of builders.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 1.5rem;">Platform</h4>
+          <ul style="list-style: none; display: grid; gap: 0.8rem;">
+            <li><a href="events.html" class="nav-link">Hackathons</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+            <li><a href="team-matching.html" class="nav-link">Team Matching</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 1.5rem;">Community</h4>
+          <ul style="list-style: none; display: grid; gap: 0.8rem;">
+            <li><a href="mentors.html" class="nav-link">Mentors</a></li>
+            <li><a href="resources.html" class="nav-link">Resources</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2026 HackForge. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <!-- Particles.js Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+</body>
+</html>

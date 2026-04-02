@@ -179,59 +179,73 @@
   </section>
   <!-- Registration Modal -->
   <div id="registration-modal" class="modal-overlay">
-    <div class="modal-content glass-panel">
+    <div class="modal-content glass-panel" id="modal-container">
       <button class="modal-close" id="close-modal"><i class="ph ph-x"></i></button>
-      <h2 style="margin-bottom: 0.5rem;">Event <span class="gradient-text">Registration</span></h2>
-      <p id="modal-event-name" style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">Registering for: Event Name</p>
       
-      <form id="registration-form" class="contact-form">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-          <div class="form-group">
-            <label for="reg-name">Full Name</label>
-            <input type="text" id="reg-name" class="form-control" placeholder="John Doe" required>
-          </div>
-          <div class="form-group">
-            <label for="reg-email">Email Address</label>
-            <input type="email" id="reg-email" class="form-control" placeholder="john@example.com" required>
-          </div>
-        </div>
+      <!-- Registration Form View -->
+      <div id="registration-form-view">
+        <h2 style="margin-bottom: 0.5rem;">Event <span class="gradient-text">Registration</span></h2>
+        <p id="modal-event-name" style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">Registering for: Event Name</p>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-          <div class="form-group">
-            <label for="reg-team">Team Name (Optional)</label>
-            <input type="text" id="reg-team" class="form-control" placeholder="The Hackers">
+        <form id="registration-form" class="contact-form">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" class="form-control" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" class="form-control" placeholder="john@example.com" required>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="reg-role">Primary Role</label>
-            <select id="reg-role" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem;" required>
-              <option value="" disabled selected>Select Role</option>
-              <option value="frontend">Frontend Developer</option>
-              <option value="backend">Backend Developer</option>
-              <option value="fullstack">Fullstack Developer</option>
-              <option value="designer">UI/UX Designer</option>
-              <option value="mobile">Mobile Developer</option>
-              <option value="other">Other</option>
-            </select>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="reg-team">Team Name (Optional)</label>
+              <input type="text" id="reg-team" class="form-control" placeholder="The Hackers">
+            </div>
+            <div class="form-group">
+              <label for="reg-role">Primary Role</label>
+              <select id="reg-role" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem;" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="frontend">Frontend Developer</option>
+                <option value="backend">Backend Developer</option>
+                <option value="fullstack">Fullstack Developer</option>
+                <option value="designer">UI/UX Designer</option>
+                <option value="mobile">Mobile Developer</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="reg-experience">Experience Level</label>
-          <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-              <input type="radio" name="experience" value="beginner" checked> Beginner
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-              <input type="radio" name="experience" value="intermediate"> Intermediate
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-              <input type="radio" name="experience" value="expert"> Expert
-            </label>
+          <div class="form-group">
+            <label for="reg-experience">Experience Level</label>
+            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="radio" name="experience" value="beginner" checked> Beginner
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="radio" name="experience" value="intermediate"> Intermediate
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="radio" name="experience" value="expert"> Expert
+              </label>
+            </div>
           </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Complete Registration <i class="ph-fill ph-check-circle"></i></button>
-      </form>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Complete Registration <i class="ph-fill ph-check-circle"></i></button>
+        </form>
+      </div>
+
+      <!-- Success View (Hidden by default) -->
+      <div id="registration-success-view" style="display: none; text-align: center; padding: 2rem 0;">
+        <div style="width: 100px; height: 100px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; border: 2px solid #10b981; animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+          <i class="ph-fill ph-check" style="font-size: 3.5rem; color: #10b981;"></i>
+        </div>
+        <h2 style="margin-bottom: 1rem;">You're Registered! 🎉</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6;">Welcome to the competition. We've sent a confirmation email with all the details and next steps to your inbox.</p>
+        <button class="btn btn-primary" id="success-done-btn" style="width: 100%; justify-content: center;">Awesome, Let's Go!</button>
+      </div>
     </div>
   </div>
 

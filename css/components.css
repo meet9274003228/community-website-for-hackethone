@@ -482,3 +482,19 @@ form select option {
   background: var(--bg-surface);
   color: var(--text-main);
 }
+
+/* Animations */
+@keyframes scaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2100;
+}

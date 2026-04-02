@@ -246,6 +246,11 @@ if (regModal && openRegBtns.length > 0) {
     btn.addEventListener('click', () => {
       const eventName = btn.getAttribute('data-event');
       modalEventName.textContent = `Registering for: ${eventName}`;
+      
+      // Reset view to form
+      document.getElementById('registration-form-view').style.display = 'block';
+      document.getElementById('registration-success-view').style.display = 'none';
+      
       regModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -267,25 +272,78 @@ if (regModal && openRegBtns.length > 0) {
       e.preventDefault();
       const submitBtn = regForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
+      const eventName = modalEventName.textContent.replace('Registering for: ', '');
       
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1.5s linear infinite;"></i> Processing...';
       
       // Mock API Call
       setTimeout(() => {
-        submitBtn.style.background = '#10b981';
-        submitBtn.innerHTML = '<i class="ph ph-check-circle"></i> Registration Successful!';
+        // Show Success View
+        document.getElementById('registration-form-view').style.display = 'none';
+        document.getElementById('registration-success-view').style.display = 'block';
         
-        setTimeout(() => {
-          closeModal();
-          regForm.reset();
-          // Reset button
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-          submitBtn.style.background = '';
-        }, 1500);
-      }, 2000);
+        // Trigger Confetti
+        createConfetti();
+        
+        // Update the original trigger button to "Registered"
+        openRegBtns.forEach(btn => {
+          if (btn.getAttribute('data-event') === eventName) {
+            btn.innerHTML = '<i class="ph ph-check"></i> Registered';
+            btn.classList.add('btn-success'); // Assuming we add a success class or just style it
+            btn.disabled = true;
+            btn.style.background = '#10b981';
+            btn.style.borderColor = '#10b981';
+          }
+        });
+
+        // Reset button for next time (though it's hidden now)
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 1500);
     });
+  }
+
+  // Done button in success view
+  document.getElementById('success-done-btn')?.addEventListener('click', closeModal);
+}
+
+// Simple Confetti Function
+function createConfetti() {
+  const colors = ['#8b5cf6', '#ec4891', '#0ea5e9', '#10b981', '#f59e0b'];
+  const container = document.getElementById('modal-container');
+  
+  if (!container) return;
+
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.top = Math.random() * 100 + '%';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    
+    container.appendChild(confetti);
+    
+    // Animate
+    const velocityX = (Math.random() - 0.5) * 10;
+    const velocityY = (Math.random() - 0.5) * 10;
+    let opacity = 1;
+    
+    const animation = setInterval(() => {
+      const currentTop = parseFloat(confetti.style.top);
+      const currentLeft = parseFloat(confetti.style.left);
+      
+      confetti.style.top = (currentTop + velocityY) + '%';
+      confetti.style.left = (currentLeft + velocityX) + '%';
+      opacity -= 0.02;
+      confetti.style.opacity = opacity;
+      
+      if (opacity <= 0) {
+        clearInterval(animation);
+        confetti.remove();
+      }
+    }, 20);
   }
 }
 

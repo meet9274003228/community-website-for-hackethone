@@ -65,20 +65,7 @@ if (typingTextElement) {
   setTimeout(typeEffect, 1000);
 }
 
-// Custom Cursor
-const cursor = document.createElement('div');
-cursor.classList.add('custom-cursor');
-document.body.appendChild(cursor);
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-
-document.querySelectorAll('a, button, .btn').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-});
 
 // Countdown Timer
 const cdDays = document.getElementById('cd-days');

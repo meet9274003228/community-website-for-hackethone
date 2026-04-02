@@ -102,6 +102,23 @@ if (cdDays && cdHours && cdMins && cdSecs) {
 // Contact Form Handling (Moved to end for consistency)
 
 // Theme Toggle Logic - Removed for fixed theme
+// Mobile Menu Toggle
+const mobileToggle = document.getElementById('mobile-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileToggle && navLinks) {
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    const icon = mobileToggle.querySelector('i');
+    if (navLinks.classList.contains('active')) {
+      icon.classList.remove('ph-list');
+      icon.classList.add('ph-x');
+    } else {
+      icon.classList.remove('ph-x');
+      icon.classList.add('ph-list');
+    }
+  });
+}
 
 // Notifications Dropdown Logic
 const notifBtn = document.getElementById('notif-btn');

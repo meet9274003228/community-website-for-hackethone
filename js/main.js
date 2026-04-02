@@ -101,22 +101,7 @@ if (cdDays && cdHours && cdMins && cdSecs) {
 
 // Contact Form Handling (Moved to end for consistency)
 
-// Theme Toggle Logic
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.documentElement;
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const isDark = body.getAttribute('data-theme') !== 'light';
-    if (isDark) {
-      body.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      body.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'dark');
-    }
-  });
-}
+// Theme Toggle Logic - Removed for fixed theme
 
 // Notifications Dropdown Logic
 const notifBtn = document.getElementById('notif-btn');

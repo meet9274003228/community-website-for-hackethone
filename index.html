@@ -14,13 +14,6 @@
   
   <!-- Phosphor Icons (for modern icons) -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <!-- Theme Init (Prevent Flash) -->
-  <script>
-    (function() {
-      const theme = localStorage.getItem('theme') || 'dark';
-      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
-    })();
-  </script>
 </head>
 <body>
   <!-- Particle Background -->
@@ -47,11 +40,7 @@
       </div>
 
       <div class="nav-cta" style="display: flex; align-items: center; gap: 1rem;">
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
-          <i class="ph ph-moon"></i>
-          <i class="ph ph-sun"></i>
-        </button>
+
 
         <!-- Notifications -->
         <div class="notifications-wrapper">

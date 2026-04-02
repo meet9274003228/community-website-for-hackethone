@@ -21,6 +21,7 @@
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-blur: blur(16px);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
 
   /* Typography */
   --font-sans: 'Inter', sans-serif;
@@ -34,20 +35,21 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light Mode Variables */
+/* Light Mode Overrides */
 [data-theme="light"] {
   --bg-dark: #f8fafc;
   --bg-darker: #f1f5f9;
   --bg-surface: #ffffff;
   
   --text-main: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569; /* Slate 600 - darker for readability */
   
   --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.05);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(139, 92, 246, 0.15); /* Tinted border */
+  --glass-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.1);
+  --glass-highlight: rgba(139, 92, 246, 0.05);
   
-  --primary-glow: rgba(139, 92, 246, 0.1);
-  --secondary-glow: rgba(236, 72, 153, 0.1);
-  --accent-glow: rgba(14, 165, 233, 0.1);
+  --primary-glow: rgba(139, 92, 246, 0.15);
+  --secondary-glow: rgba(236, 72, 153, 0.15);
+  --accent-glow: rgba(14, 165, 233, 0.15);
 }

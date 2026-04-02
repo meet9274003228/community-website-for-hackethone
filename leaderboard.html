@@ -39,8 +39,8 @@
     }
     /* 1st Place */
     .podium-gold {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.05));
-      border: 1px solid rgba(251, 191, 36, 0.4);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), var(--glass-highlight));
+      border: 1px solid rgba(251, 191, 36, 0.3);
       box-shadow: 0 0 30px rgba(251, 191, 36, 0.15);
       order: 2;
       padding-bottom: 3rem;
@@ -48,16 +48,16 @@
     .podium-gold:hover { box-shadow: 0 0 50px rgba(251, 191, 36, 0.3); }
     /* 2nd Place */
     .podium-silver {
-      background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.05));
-      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), var(--glass-highlight));
+      border: 1px solid rgba(148, 163, 184, 0.2);
       box-shadow: 0 0 20px rgba(148, 163, 184, 0.1);
       order: 1;
     }
     .podium-silver:hover { box-shadow: 0 0 40px rgba(148, 163, 184, 0.2); }
     /* 3rd Place */
     .podium-bronze {
-      background: linear-gradient(135deg, rgba(180, 83, 9, 0.15), rgba(146, 64, 14, 0.05));
-      border: 1px solid rgba(180, 83, 9, 0.3);
+      background: linear-gradient(135deg, rgba(180, 83, 9, 0.1), var(--glass-highlight));
+      border: 1px solid rgba(180, 83, 9, 0.2);
       box-shadow: 0 0 20px rgba(180, 83, 9, 0.1);
       order: 3;
     }
@@ -131,7 +131,7 @@
       border-collapse: collapse;
     }
     .lb-table thead tr {
-      background: rgba(255,255,255,0.03);
+      background: var(--glass-highlight);
       border-bottom: 1px solid var(--glass-border);
     }
     .lb-table th {
@@ -143,7 +143,7 @@
       letter-spacing: 1px;
     }
     .lb-table tbody tr {
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--glass-border);
       transition: background 0.3s ease;
     }
     .lb-table tbody tr:hover {

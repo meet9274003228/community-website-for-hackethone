@@ -154,9 +154,9 @@
             <span class="badge badge-upcoming">Upcoming</span>
             <span style="color: var(--text-muted); font-size: 0.9rem;"><i class="ph ph-calendar"></i> Oct 15-17</span>
           </div>
-          <h3 style="font-size: 1.5rem;">Global AI Buildathon 2026</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; flex-grow: 1;">Build the next generation of AI tools and agents. $50,000 prize pool.</p>
-          <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register Now</a>
+          <h3 style="font-size: 1.5rem;">Global AI Buildathon</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Build the next gen AI tools. $50,000 prize pool.</p>
+          <button class="btn btn-primary open-registration" data-event="Global AI Buildathon" style="width: 100%; margin-top: 1rem;">Register Now</button>
         </div>
         
         <!-- Card 2 -->
@@ -183,8 +183,8 @@
             <span style="color: var(--text-muted); font-size: 0.9rem;"><i class="ph ph-calendar"></i> Nov 05-07</span>
           </div>
           <h3 style="font-size: 1.5rem;">EcoHack Sustainability</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; flex-grow: 1;">Tech solutions for climate change and a greener planet.</p>
-          <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register Now</a>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Tech solutions for climate change.</p>
+          <button class="btn btn-primary open-registration" data-event="EcoHack Sustainability" style="width: 100%; margin-top: 1rem;">Register Now</button>
         </div>
       </div>
     </div>
@@ -340,6 +340,64 @@
   </footer>
 
   <!-- JS -->
+  <!-- Registration Modal -->
+  <div id="registration-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <button class="modal-close" id="close-modal"><i class="ph ph-x"></i></button>
+      <h2 style="margin-bottom: 0.5rem;">Event <span class="gradient-text">Registration</span></h2>
+      <p id="modal-event-name" style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">Registering for: Event Name</p>
+      
+      <form id="registration-form" class="contact-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="john@example.com" required>
+          </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="reg-team">Team Name (Optional)</label>
+            <input type="text" id="reg-team" class="form-control" placeholder="The Hackers">
+          </div>
+          <div class="form-group">
+            <label for="reg-role">Primary Role</label>
+            <select id="reg-role" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem;" required>
+              <option value="" disabled selected>Select Role</option>
+              <option value="frontend">Frontend Developer</option>
+              <option value="backend">Backend Developer</option>
+              <option value="fullstack">Fullstack Developer</option>
+              <option value="designer">UI/UX Designer</option>
+              <option value="mobile">Mobile Developer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-experience">Experience Level</label>
+          <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="radio" name="experience" value="beginner" checked> Beginner
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="radio" name="experience" value="intermediate"> Intermediate
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="radio" name="experience" value="expert"> Expert
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Complete Registration <i class="ph-fill ph-check-circle"></i></button>
+      </form>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   
   <!-- Particles.js Integration -->

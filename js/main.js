@@ -234,6 +234,61 @@ if (filterButtons.length > 0 && eventCards.length > 0) {
   });
 }
 
+// Registration Modal Logic
+const regModal = document.getElementById('registration-modal');
+const closeRegBtn = document.getElementById('close-modal');
+const openRegBtns = document.querySelectorAll('.open-registration');
+const modalEventName = document.getElementById('modal-event-name');
+const regForm = document.getElementById('registration-form');
+
+if (regModal && openRegBtns.length > 0) {
+  openRegBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const eventName = btn.getAttribute('data-event');
+      modalEventName.textContent = `Registering for: ${eventName}`;
+      regModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  const closeModal = () => {
+    regModal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  closeRegBtn?.addEventListener('click', closeModal);
+  regModal.addEventListener('click', (e) => {
+    if (e.target === regModal) closeModal();
+  });
+
+  // Registration Form Submission
+  if (regForm) {
+    regForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submitBtn = regForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1.5s linear infinite;"></i> Processing...';
+      
+      // Mock API Call
+      setTimeout(() => {
+        submitBtn.style.background = '#10b981';
+        submitBtn.innerHTML = '<i class="ph ph-check-circle"></i> Registration Successful!';
+        
+        setTimeout(() => {
+          closeModal();
+          regForm.reset();
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+          submitBtn.style.background = '';
+        }, 1500);
+      }, 2000);
+    });
+  }
+}
+
 // Spin animation for loading state
 const style = document.createElement('style');
 style.textContent = `

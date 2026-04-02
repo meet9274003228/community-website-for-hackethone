@@ -20,7 +20,31 @@
         <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
         <li><a href="resources.html" class="nav-link">Resources</a></li>
       </ul>
-      <div class="nav-cta"><a href="#" class="btn btn-primary">Join Discord</a></div>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <i class="ph ph-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search projects...">
+      </div>
+
+      <div class="nav-cta" style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="theme-toggle"><i class="ph ph-moon"></i></button>
+        <div class="notifications-wrapper">
+          <button class="notif-btn" id="notif-btn"><i class="ph ph-bell"></i><span class="notif-badge">3</span></button>
+          <div class="dropdown-menu" id="notif-dropdown">
+            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">Notifications</h4>
+            <div class="notif-item unread">
+              <i class="ph-fill ph-circle" style="color: var(--primary); font-size: 8px; margin-top: 5px;"></i>
+              <div>
+                <p style="font-size: 0.9rem; font-weight: 600;">Team Request</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Sarah wants to join your team!</p>
+              </div>
+            </div>
+            <a href="#" style="display: block; text-align: center; font-size: 0.85rem; color: var(--primary); margin-top: 1rem; font-weight: 600;">View All</a>
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary">Join Discord</a>
+      </div>
     </div>
   </nav>
 
@@ -33,7 +57,7 @@
 
   <section class="section" style="padding-top: 2rem;">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 5rem;">
         <!-- Project 1 -->
         <div class="glass-panel reveal" style="overflow: hidden; padding: 0;">
           <div style="height: 220px; background: linear-gradient(135deg, var(--primary), var(--bg-surface)); display: flex; align-items: center; justify-content: center;">
@@ -52,9 +76,76 @@
                 <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">AS</div>
                 <span style="font-size: 0.9rem; color: var(--text-muted);">Alex Smith + 2 others</span>
               </div>
-              <a href="#" style="color: var(--primary);"><i class="ph-fill ph-arrow-square-out" style="font-size: 1.2rem;"></i></a>
+              <a href="profile.html" style="color: var(--primary);"><i class="ph-fill ph-arrow-square-out" style="font-size: 1.2rem;"></i></a>
             </div>
           </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="glass-panel reveal" style="overflow: hidden; padding: 0; transition-delay: 0.1s;">
+          <div style="height: 220px; background: linear-gradient(135deg, var(--secondary), var(--bg-surface)); display: flex; align-items: center; justify-content: center;">
+            <i class="ph-duotone ph-leaf" style="font-size: 5rem; color: white;"></i>
+          </div>
+          <div style="padding: 1.5rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">EcoTracker</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">Blockchain-based carbon footprint tracking for businesses.</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <span style="background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;">Solidity</span>
+              <span style="background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;">Next.js</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--glass-border); padding-top: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">JD</div>
+                <span style="font-size: 0.9rem; color: var(--text-muted);">Jane Doe + 1 other</span>
+              </div>
+              <a href="profile.html" style="color: var(--primary);"><i class="ph-fill ph-arrow-square-out" style="font-size: 1.2rem;"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discussion Section -->
+      <div class="glass-panel reveal" style="padding: 3rem; max-width: 900px; margin: 0 auto;">
+        <h2 style="margin-bottom: 2rem;">Community <span class="gradient-text">Discussion</span></h2>
+        
+        <div class="comments-list" style="display: grid; gap: 2rem; margin-bottom: 3rem;">
+          <div style="display: flex; gap: 1.5rem;">
+            <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: bold;">MC</div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                <h4 style="font-size: 1rem;">Mark Chen</h4>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">2 hours ago</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">The AutoDev Agent project is incredible! I love the way it handles async functions. Any plans to support Rust?</p>
+              <div style="display: flex; gap: 1.5rem; margin-top: 0.8rem; font-size: 0.85rem; color: var(--primary);">
+                <a href="#" style="font-weight: 600;">Reply</a>
+                <a href="#" style="font-weight: 600;">Like (12)</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; margin-left: 4rem;">
+            <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: bold;">SK</div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                <h4 style="font-size: 1rem;">Sarah Kline</h4>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">1 hour ago</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">Yes, we're working on Rust support right now! Stay tuned for the next major release.</p>
+              <div style="display: flex; gap: 1.5rem; margin-top: 0.8rem; font-size: 0.85rem; color: var(--primary);">
+                <a href="#" style="font-weight: 600;">Reply</a>
+                <a href="#" style="font-weight: 600;">Like (5)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+          <h3 style="margin-bottom: 1.5rem;">Leave a Comment</h3>
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <textarea class="form-control" placeholder="Write your thoughts here..." style="min-height: 100px;"></textarea>
+          </div>
+          <button class="btn btn-primary">Post Comment <i class="ph ph-paper-plane-tilt"></i></button>
         </div>
       </div>
     </div>

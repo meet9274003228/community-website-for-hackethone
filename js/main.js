@@ -140,6 +140,62 @@ if (contactForm) {
   });
 }
 
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.documentElement;
+const themeIcon = themeToggle?.querySelector('i');
+
+const currentTheme = localStorage.getItem('theme') || 'dark';
+if (currentTheme === 'light') {
+  body.setAttribute('data-theme', 'light');
+  if (themeIcon) {
+    themeIcon.classList.replace('ph-moon', 'ph-sun');
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = body.getAttribute('data-theme') !== 'light';
+    if (isDark) {
+      body.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      themeIcon.classList.replace('ph-moon', 'ph-sun');
+    } else {
+      body.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+      themeIcon.classList.replace('ph-sun', 'ph-moon');
+    }
+  });
+}
+
+// Notifications Dropdown Logic
+const notifBtn = document.getElementById('notif-btn');
+const notifDropdown = document.getElementById('notif-dropdown');
+
+if (notifBtn && notifDropdown) {
+  notifBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    notifDropdown.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!notifDropdown.contains(e.target) && !notifBtn.contains(e.target)) {
+      notifDropdown.classList.remove('active');
+    }
+  });
+}
+
+// Search Logic (Mock)
+const searchInput = document.querySelector('.search-input');
+if (searchInput) {
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+      alert(`Searching for: ${searchInput.value}\n(Search functionality will be fully implemented soon!)`);
+      searchInput.value = '';
+    }
+  });
+}
+
 // Spin animation for loading state
 const style = document.createElement('style');
 style.textContent = `

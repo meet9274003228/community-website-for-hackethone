@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/main.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Theme Init -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
 </head>
 <body>
   <nav class="navbar scrolled">
@@ -20,7 +27,31 @@
         <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
         <li><a href="resources.html" class="nav-link" style="color: var(--text-main);">Resources</a></li>
       </ul>
-      <div class="nav-cta"><a href="#" class="btn btn-primary">Join Discord</a></div>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <i class="ph ph-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search resources...">
+      </div>
+
+      <div class="nav-cta" style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="theme-toggle"><i class="ph ph-moon"></i></button>
+        <div class="notifications-wrapper">
+          <button class="notif-btn" id="notif-btn"><i class="ph ph-bell"></i><span class="notif-badge">3</span></button>
+          <div class="dropdown-menu" id="notif-dropdown">
+            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">Notifications</h4>
+            <div class="notif-item unread">
+              <i class="ph-fill ph-circle" style="color: var(--primary); font-size: 8px; margin-top: 5px;"></i>
+              <div>
+                <p style="font-size: 0.9rem; font-weight: 600;">Team Request</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Sarah wants to join your team!</p>
+              </div>
+            </div>
+            <a href="#" style="display: block; text-align: center; font-size: 0.85rem; color: var(--primary); margin-top: 1rem; font-weight: 600;">View All</a>
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary">Join Discord</a>
+      </div>
     </div>
   </nav>
 

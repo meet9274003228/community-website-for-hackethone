@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackForge | Member Profile</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Theme Init (Prevent Flash) -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+  <style>
+    .profile-header {
+      background: linear-gradient(to bottom, rgba(139, 92, 246, 0.1), transparent);
+      padding-top: 150px;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .profile-avatar-large {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1.5rem;
+      border: 4px solid var(--bg-dark);
+      box-shadow: 0 0 30px var(--primary-glow);
+    }
+    .stats-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .badge-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation (Same as index.html) -->
+  <nav class="navbar scrolled">
+    <div class="container">
+      <div class="nav-brand">
+        <i class="ph-fill ph-code" style="color: var(--primary); margin-right: 5px; vertical-align: middle;"></i>Hack<span class="gradient-text">Forge</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="events.html" class="nav-link">Hackathons</a></li>
+        <li><a href="projects.html" class="nav-link">Gallery</a></li>
+        <li><a href="leaderboard.html" class="nav-link">Leaderboard</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+      </ul>
+      
+      <div class="search-container">
+        <i class="ph ph-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search hackathons, teams...">
+      </div>
+
+      <div class="nav-cta" style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="theme-toggle"><i class="ph ph-moon"></i></button>
+        <div class="notifications-wrapper">
+          <button class="notif-btn" id="notif-btn"><i class="ph ph-bell"></i><span class="notif-badge">3</span></button>
+          <div class="dropdown-menu" id="notif-dropdown">
+            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">Notifications</h4>
+            <div class="notif-item unread">
+              <i class="ph-fill ph-circle" style="color: var(--primary); font-size: 8px; margin-top: 5px;"></i>
+              <div>
+                <p style="font-size: 0.9rem; font-weight: 600;">Team Request</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Sarah wants to join your team!</p>
+              </div>
+            </div>
+            <a href="#" style="display: block; text-align: center; font-size: 0.85rem; color: var(--primary); margin-top: 1rem; font-weight: 600;">View All</a>
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary">Join Discord</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="profile-header">
+    <div class="container reveal">
+      <div style="display: flex; gap: 3rem; align-items: flex-start; flex-wrap: wrap;">
+        <div class="profile-avatar-large">JD</div>
+        <div style="flex: 1; min-width: 300px;">
+          <h1 style="font-size: 3rem; margin-bottom: 0.5rem;">Jane Doe</h1>
+          <p style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 1.5rem;">Full Stack Developer & AI Enthusiast</p>
+          <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <span class="badge badge-upcoming"><i class="ph ph-map-pin"></i> San Francisco, CA</span>
+            <span class="badge badge-live"><i class="ph ph-link"></i> janedoe.dev</span>
+          </div>
+          <p style="max-width: 600px; color: var(--text-muted); margin-bottom: 2rem;">
+            Building the future of decentralized computing. 3x Hackathon winner, focusing on AI-powered agents and seamless UI/UX experiences.
+          </p>
+          <div style="display: flex; gap: 1rem;">
+            <button class="btn btn-primary">Follow</button>
+            <button class="btn btn-outline">Message</button>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 300px;">
+          <div class="stats-card">
+            <h2 class="gradient-text">24.5k</h2>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Points</p>
+          </div>
+          <div class="stats-card">
+            <h2 class="gradient-text">12</h2>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Hackathons</p>
+          </div>
+          <div class="stats-card">
+            <h2 class="gradient-text">45</h2>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Badges</p>
+          </div>
+          <div class="stats-card">
+            <h2 class="gradient-text">8</h2>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Projects</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
+        <!-- Projects Section -->
+        <div>
+          <h2 style="margin-bottom: 2rem;">Recent <span class="gradient-text">Projects</span></h2>
+          <div style="display: grid; gap: 2rem;">
+            <div class="glass-panel reveal" style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center;">
+              <div style="width: 120px; height: 120px; border-radius: 12px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
+                <i class="ph ph-brain" style="font-size: 3rem; color: var(--primary);"></i>
+              </div>
+              <div style="flex: 1;">
+                <h3 style="margin-bottom: 0.5rem;">NeuroFlow AI</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Self-optimizing workflow manager using LLMs. Winner of AI Buildathon 2025.</p>
+                <div style="display: flex; gap: 0.5rem;">
+                  <span class="badge" style="background: rgba(255,255,255,0.05);">Next.js</span>
+                  <span class="badge" style="background: rgba(255,255,255,0.05);">OpenAI</span>
+                </div>
+              </div>
+              <i class="ph ph-arrow-right" style="font-size: 1.5rem; color: var(--text-muted);"></i>
+            </div>
+
+            <div class="glass-panel reveal" style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; transition-delay: 0.1s;">
+              <div style="width: 120px; height: 120px; border-radius: 12px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
+                <i class="ph ph-currency-eth" style="font-size: 3rem; color: var(--accent);"></i>
+              </div>
+              <div style="flex: 1;">
+                <h3 style="margin-bottom: 0.5rem;">EtherSwap</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Decentralized exchange with zero-knowledge proofs for privacy.</p>
+                <div style="display: flex; gap: 0.5rem;">
+                  <span class="badge" style="background: rgba(255,255,255,0.05);">Solidity</span>
+                  <span class="badge" style="background: rgba(255,255,255,0.05);">Web3.js</span>
+                </div>
+              </div>
+              <i class="ph ph-arrow-right" style="font-size: 1.5rem; color: var(--text-muted);"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges Section -->
+        <div>
+          <h2 style="margin-bottom: 2rem;">Achievement <span class="gradient-text">Badges</span></h2>
+          <div class="glass-panel reveal" style="padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: center;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div class="badge-icon" style="color: #fbbf24;"><i class="ph-fill ph-trophy"></i></div>
+              <p style="font-size: 0.8rem; font-weight: 600;">1st Place</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div class="badge-icon" style="color: var(--primary);"><i class="ph-fill ph-medal"></i></div>
+              <p style="font-size: 0.8rem; font-weight: 600;">Power Builder</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div class="badge-icon" style="color: var(--secondary);"><i class="ph-fill ph-fire"></i></div>
+              <p style="font-size: 0.8rem; font-weight: 600;">Ship-it Streak</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div class="badge-icon" style="color: var(--accent);"><i class="ph-fill ph-lightning"></i></div>
+              <p style="font-size: 0.8rem; font-weight: 600;">Fast Solver</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
